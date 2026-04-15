@@ -1,56 +1,85 @@
-# 🏨 Snap-Book — сервис бронирования отелей
+# Snap-Book ![GitHub License](https://img.shields.io/github/license/guwisu/Snap-Book)
 
-**Snap-Book** — это backend-сервис для бронирования отелей, разработанный с использованием современных технологий.  
-Проект включает в себя авторизацию, управление пользователями, отелями, комнатами и бронированиями, а также фоновую обработку задач и развертывание через CI/CD.
+<div>
+  <img height="60" alt="fastapi-logo" src="https://github.com/user-attachments/assets/24ce8412-0134-4e04-b318-2ffdbd089783" />
+  <img height="60" alt="postgres" src="https://github.com/user-attachments/assets/50d93513-e2e4-4b64-870c-ea685607616c" />
+  <img height="60" alt="sql-alchemy" src="https://github.com/user-attachments/assets/3171fa47-ef65-4ba3-aca2-4f179f7b9147" />
+  <img height="50" alt="docker-mark-ocean-blue" src="https://github.com/user-attachments/assets/80906a73-2fe6-46ac-a94a-51448f6e40c6" />
+</div>
 
-🔗 Демо: [snap-book.ru](https://snap-book.ru)
 
----
 
-## 🚀 Технологии
+Snap-Book is a backend service for hotel room reservations. The service provides user authentication and authorization, hotel and room management, booking functionality, and facilities catalog. The project includes database migration management, background task processing, containerized deployment, automated testing, and CI/CD pipeline.
 
-- ⚙️ **FastAPI** — web-фреймворк для API
-- 🐘 **PostgreSQL** — основная СУБД
-- 🔗 **SQLAlchemy** — ORM
-- 🔀 **Alembic** — миграции БД
-- 📦 **Docker / Docker Compose** — контейнеризация и локальный запуск
-- 🧪 **Pytest** — покрытие unit, integration и API тестов
-- 🧰 **Redis** — брокер для фоновых задач
-- ⏱ **Celery** — асинхронные фоновые задачи (например, email-уведомления)
-- 🔐 **JWT (PyJWT)** — аутентификация
-- 🧹 **Black + Ruff** — форматирование и линтинг кода
-- 🔁 **CI/CD (GitLab + GitLab Runner)** — автоматическая проверка и деплой на сервер
-- 🌐 **Swagger UI** — документация к API
 
----
+## Features
 
-## 🔐 Безопасность и SSL
+- User registration, login, and logout
+- Create, update, and delete hotels and rooms
+- Create and view bookings
+- View and add facilities
+- Asynchronous background task processing
+- RESTful API built with FastAPI
+- Database migrations support
+- Containerized environment with Docker
+- Automated testing with Pytest
+- CI/CD pipeline
 
-- Проект работает по **HTTPS** (используется SSL-сертификат)
-- Сертификат получен через [Let's Encrypt](https://letsencrypt.org/)
-- Подключён к домену [snap-book.ru](https://snap-book.ru)
-- Все данные передаются по защищённому каналу
 
-## 📦 Основные сущности
+## Tech Stack
 
-- **Пользователь**
-  - Регистрация, авторизация (JWT)
-  - Получение своих данных
-  - Выход из аккаунта
+- Python  
+- FastAPI  
+- PostgreSQL  
+- SQLAlchemy  
+- Alembic  
+- Celery  
+- Redis  
+- Docker / Docker Compose  
+- Pytest  
+- GitLab CI/CD  
 
-- **Отель**
-  - Создание / получение / изменение / удаление
-  
 
-- **Комната**
-  - Привязана к отелю
-  - Создание / получение / изменение / удаление
+## Project Structure
+```
+Snap-Book/
+├── src/
+│   ├── api/
+│   ├── connectors/
+│   ├── migrations/
+│   ├── models/
+│   ├── repositories/
+│       └── mappers/
+│   ├── schemas/
+│   ├── services/
+│   ├── tasks/
+│   └── utils/
+├── tests/
+│   ├── integration_tests/
+│   └── unit_tests/
+└── docs/
+```
 
-- **Бронирование**
-  - Получение броней
-  - Создание брони
-  - Просмотр своих броней
+## Installation
 
-- **Удобства**
-  - Список всех удобств
-  - Добавление удобства
+1. Clone the repository.
+```bash
+git clone https://github.com/guwisu/Snap-Book.git
+cd Snap-Book
+```
+2. Copy environment variables file.
+```bash
+cp .env.example .env
+```
+3. Build containers with Docker.
+```bash
+docker-compose up -d --build
+```
+4. Access the API
+```bash
+http://localhost:8000/docs
+```
+
+## License
+
+This project is under the MIT license.
