@@ -75,10 +75,17 @@ cp .env.example .env
 ```bash
 docker-compose up -d --build
 ```
-4. Access the API
+4. Access the API.
 ```bash
 http://localhost:8000/docs
 ```
+
+## Interactive API Documentation
+
+The project includes automatic API documentation via FastAPI's Swagger UI.
+
+<img width="1919" height="915" alt="Snap-Book_1" src="https://github.com/user-attachments/assets/d306aee8-abed-4b35-b7c5-0d1e91a74208" />
+<img width="1919" height="802" alt="Snap-Book_2" src="https://github.com/user-attachments/assets/d0fde3ca-7397-4840-a286-76e23d72d546" />
 
 ## License
 
