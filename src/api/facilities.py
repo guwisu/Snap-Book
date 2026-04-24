@@ -11,7 +11,7 @@ from src.exceptions import (
 from src.schemas.facilities import FacilityAdd
 from src.services.facilities import FacilityService
 
-router = APIRouter(prefix="/facilities", tags=["Удобства"])
+router = APIRouter(prefix="/facilities", tags=["Facilities"])
 
 
 @router.get("")

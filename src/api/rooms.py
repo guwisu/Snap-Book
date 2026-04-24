@@ -20,10 +20,10 @@ from src.schemas.rooms import RoomAddRequest, RoomPatchRequest
 from src.api.dependencies import DBDep
 from src.services.rooms import RoomService
 
-router = APIRouter(prefix="/hotels", tags=["Номера"])
+router = APIRouter(prefix="/hotels", tags=["Rooms"])
 
 
-@router.get("/{hotel_id}/rooms", summary="Получить список номеров")
+@router.get("/{hotel_id}/rooms")
 async def get_rooms(
     db: DBDep,
     hotel_id: int,
@@ -36,15 +36,15 @@ async def get_rooms(
         raise HotelNotFoundHTTPException
 
 
-@router.get("/{hotel_id}/rooms/{room_id}", summary="Получение номера по id")
-async def get_room(db: DBDep, hotel_id: int, room_id: int):
+@router.get("/{hotel_id}/rooms/{room_id}")
+async def get_room_by_id(db: DBDep, hotel_id: int, room_id: int):
     try:
         return await RoomService(db).get_room(hotel_id, room_id)
     except ObjectNotFoundException:
         raise ObjectNotFoundHTTPException
 
 
-@router.post("/{hotel_id}/rooms", summary="Добавить номер")
+@router.post("/{hotel_id}/rooms")
 async def create_room(db: DBDep, hotel_id: int, room_data: RoomAddRequest = Body()):
     try:
         room = await RoomService(db).create_room(hotel_id, room_data)
@@ -58,7 +58,7 @@ async def create_room(db: DBDep, hotel_id: int, room_data: RoomAddRequest = Body
     return {"status": "OK", "data": room}
 
 
-@router.put("/{hotel_id}/rooms/{room_id}", summary="Изменить данные об номере")
+@router.put("/{hotel_id}/rooms/{room_id}")
 async def edit_room(db: DBDep, hotel_id: int, room_id: int, room_data: RoomAddRequest):
     try:
         room = await RoomService(db).edit_room(hotel_id, room_id, room_data)
@@ -75,8 +75,8 @@ async def edit_room(db: DBDep, hotel_id: int, room_id: int, room_data: RoomAddRe
         raise HotelAndRoomNotRelatedHTTPException
 
 
-@router.patch("/{hotel_id}/rooms/{room_id}", summary="Частично изменить данные от номере")
-async def partially_edit_room(db: DBDep, hotel_id: int, room_id: int, room_data: RoomPatchRequest):
+@router.patch("/{hotel_id}/rooms/{room_id}")
+async def patch_room(db: DBDep, hotel_id: int, room_id: int, room_data: RoomPatchRequest):
     try:
         room = await RoomService(db).partially_edit_room(hotel_id, room_id, room_data)
         return {"status": "OK", "data": room}
@@ -92,7 +92,7 @@ async def partially_edit_room(db: DBDep, hotel_id: int, room_id: int, room_data:
         raise HotelAndRoomNotRelatedHTTPException
 
 
-@router.delete("/{hotel_id}/rooms/{room_id}", summary="Удалить номер")
+@router.delete("/{hotel_id}/rooms/{room_id}")
 async def delete_room(db: DBDep, hotel_id: int, room_id: int):
     try:
         await RoomService(db).delete_room(hotel_id, room_id)

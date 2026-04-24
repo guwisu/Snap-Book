@@ -12,7 +12,7 @@ from src.exceptions import (
 from src.schemas.bookings import BookingAddRequest
 from src.services.bookings import BookingService
 
-router = APIRouter(prefix="/bookings", tags=["Бронирования"])
+router = APIRouter(prefix="/bookings", tags=["Bookings"])
 
 
 @router.get("")

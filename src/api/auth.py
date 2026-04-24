@@ -17,8 +17,7 @@ from src.exceptions import (
 from src.schemas.users import UserRequestAdd
 from src.services.auth import AuthService
 
-router = APIRouter(prefix="/auth", tags=["Авторизация и аутентификация"])
-
+router = APIRouter(prefix="/auth", tags=["Authorization and authentication"])
 
 @router.post("/register")
 async def register_user(
@@ -49,7 +48,7 @@ async def login_user(
     return {"access_token": access_token}
 
 
-@router.get("/me", summary="👨‍💻 Мои данные")
+@router.get("/me", summary="My data")
 async def get_me(
     db: DBDep,
     user_id: UserIdDep,

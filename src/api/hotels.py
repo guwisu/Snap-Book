@@ -16,17 +16,16 @@ from src.exceptions import (
 from src.schemas.hotels import HotelPatch, HotelAdd
 from src.services.hotels import HotelService
 
-router = APIRouter(prefix="/hotels", tags=["Отели"])
+router = APIRouter(prefix="/hotels", tags=["Hotels"])
 
 
-@router.get("/all", summary="Просто получить все отели")
+@router.get("/all")
 async def get_all_hotels(db: DBDep):
     return await HotelService(db).get_hotels()
 
 
 @router.get(
     "",
-    summary="Получить список отелей",
 )
 @cache(expire=10)
 async def get_hotels(
@@ -46,8 +45,8 @@ async def get_hotels(
     )
 
 
-@router.get("/{hotel_id}", summary="Получение отеля по id")
-async def get_hotel(hotel_id: int, db: DBDep):
+@router.get("/{hotel_id}")
+async def get_hotel_by_id(hotel_id: int, db: DBDep):
     try:
         return await HotelService(db).get_hotel(hotel_id)
     except ObjectNotFoundException:
@@ -56,7 +55,6 @@ async def get_hotel(hotel_id: int, db: DBDep):
 
 @router.post(
     "",
-    summary="Добавить отель",
 )
 async def create_hotel(
     db: DBDep,
@@ -90,7 +88,6 @@ async def create_hotel(
 
 @router.delete(
     "/{hotel_id}",
-    summary="Удалить отель",
 )
 async def delete_hotel(db: DBDep, hotel_id: int):
     try:
@@ -102,7 +99,6 @@ async def delete_hotel(db: DBDep, hotel_id: int):
 
 @router.patch(
     "/{hotel_id}",
-    summary="Частично изменить данные об отеле",
     description="<h1>Тут мы можем частично поменять данные об отеле: отправит либо name, либо title</h1>",
 )
 async def patch_hotel(db: DBDep, hotel_id: int, hotel_data: HotelPatch):
@@ -117,7 +113,7 @@ async def patch_hotel(db: DBDep, hotel_id: int, hotel_data: HotelPatch):
         raise HotelNotFoundHTTPException
 
 
-@router.put("/{hotel_id}", summary="Изменить данные об отеле")
+@router.put("/{hotel_id}")
 async def edit_hotel(db: DBDep, hotel_id: int, hotel_data: HotelPatch):
     try:
         hotel = await HotelService(db).edit_hotel(hotel_id, hotel_data)
