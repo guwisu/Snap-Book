@@ -12,7 +12,7 @@ from src.utils.db_manager import DBManager
 @celery_instance.task
 def test_task():
     sleep(5)
-    print("найс поработал")
+    print("Задача выполнена")
 
 
 # @celery_instance.task
