@@ -1,3 +1,7 @@
 venv/
+.venv/
 Course_Helpers/
 Dockerfile/
+__pycache__/
+*.pyc
+.git

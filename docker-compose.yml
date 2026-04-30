@@ -1,6 +1,7 @@
 services:
   booking_back_service:
     container_name: 'booking_back'
+    image: booking_app
     build:
        context: .
     ports:
@@ -9,11 +10,10 @@ services:
       - myNetwork
     env_file:
       - .env
-  
+
   booking_celery_worker_service:
     container_name: 'booking_celery_worker'
-    build:
-       context: .
+    image: booking_app
     networks:
       - myNetwork
     env_file:
@@ -22,8 +22,7 @@ services:
   
   booking_celery_beat_service:
     container_name: 'booking_celery_beat'
-    build:
-      context: .
+    image: booking_app
     networks:
       - myNetwork
     env_file:
