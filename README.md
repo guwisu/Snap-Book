@@ -73,7 +73,8 @@ cp .env.example .env
 ```
 3. Build containers with Docker.
 ```bash
-docker-compose up -d --build
+docker-compose build
+docker-compose up -d
 ```
 4. Access the API.
 ```bash
