@@ -1,20 +1,17 @@
-FROM python:3.11.13
+FROM python:3.11-slim
 
-RUN echo ls
+ENV POETRY_VERSION=2.2.1
+
+RUN pip install --no-cache-dir "poetry==$POETRY_VERSION"
+
+RUN poetry config virtualenvs.create false
+
 WORKDIR /app
-RUN echo ls
 
-COPY requirements.txt requirements.txt
-#RUN pip install -r requirements.txt
-RUN pip install --no-cache-dir --no-deps -r requirements.txt && \
-    pip cache purge && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+COPY pyproject.toml poetry.lock ./
 
-
+RUN poetry install --no-interaction --no-ansi --no-root
 
 COPY . .
 
-
-#CMD ["python", "src/main.py"]
 CMD alembic upgrade head; python src/main.py
