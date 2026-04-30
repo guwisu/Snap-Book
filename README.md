@@ -38,7 +38,7 @@ Snap-Book is a backend service for hotel room reservations. The service provides
 - Docker / Docker Compose  
 - Pytest  
 - GitLab CI/CD  
-
+- Poetry
 
 ## Project Structure
 ```
